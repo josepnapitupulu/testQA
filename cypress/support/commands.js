@@ -27,15 +27,12 @@
 import "cypress-real-events/support";
 import '@4tw/cypress-drag-drop';
 
-// cypress/support/commands.js
 Cypress.Commands.add('dragAndDrop', (dragSelector, dropSelector) => {
   cy.get(dragSelector).then($drag => {
     cy.get(dropSelector).then($drop => {
-      // Dapatkan posisi
       const dragCoords = $drag[0].getBoundingClientRect();
       const dropCoords = $drop[0].getBoundingClientRect();
 
-      // Drag start
       cy.get(dragSelector).trigger('mousedown', {
         button: 0,
         clientX: dragCoords.x,
@@ -43,7 +40,6 @@ Cypress.Commands.add('dragAndDrop', (dragSelector, dropSelector) => {
         force: true
       });
 
-      // Drag over target
       cy.get(dropSelector).trigger('mousemove', {
         button: 0,
         clientX: dropCoords.x,
@@ -51,7 +47,6 @@ Cypress.Commands.add('dragAndDrop', (dragSelector, dropSelector) => {
         force: true
       });
 
-      // Drop
       cy.get(dropSelector).trigger('mouseup', {
         clientX: dropCoords.x,
         clientY: dropCoords.y,

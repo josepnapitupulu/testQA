@@ -16,10 +16,8 @@ describe('Register User Negative Test', () => {
         
         WebTablesPage.submitForm();
 
-        // modal tetap terbuka
         WebTablesPage.verifyModalStillOpen();
 
-        // validasi field
         if(user.scenario === 'emailEmpty'){
           WebTablesPage.verifyInputInvalid('userEmail');
         }
@@ -32,7 +30,6 @@ describe('Register User Negative Test', () => {
           WebTablesPage.verifyInputInvalid('salary');
         }
 
-        // data tidak masuk table
         WebTablesPage.verifyUserNotAdded(user);
 
         cy.get('#closeLargeModal').click();
